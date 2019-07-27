@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<body>
+    <br>
+
+    {% for blog in posts %}
+    <div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"> {{blog.title}} </h5>
+            <p class="card-text"> {{blog.summary}}<br>
+            <a href="{% url 'detail' blog.id %}">...more</a> </p>
+            <p class="card-text"><small class="text-muted"> {{blog.pub_date}} </small></p>
+        </div>
+    </div>
+    </div>
+    <br>
+    {%endfor%}
+
+
+<div class="container">
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if posts.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ posts.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    
+        {% for i in posts.paginator.page_range %}     
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>    
+        {% endfor %}
+    
+        {% if posts.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ posts.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+
+{% endblock %}
+</body>

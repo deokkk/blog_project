@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"> {{posts.title}} </h5>
+            <p class="card-text"> {{posts.summary}}<br>
+            <a href="{% url 'detail' blog.id %}">...more</a> </p>
+            <p class="card-text"><small class="text-muted"> {{posts.pub_date}} </small></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
